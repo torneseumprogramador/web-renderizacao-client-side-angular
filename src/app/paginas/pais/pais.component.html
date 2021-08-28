@@ -1,0 +1,64 @@
+<section id="main-content">
+  <app-header></app-header>
+  <app-sidebar></app-sidebar>
+  <!--main content start-->
+  <section class="wrapper">
+    <!--overview start-->
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+          <li><i class="fa fa-laptop"></i>Dashboard</li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <section class="panel" style="padding: 20px">
+
+          <h1>Lista de pais</h1>
+          <p>
+              <a asp-action="Create" class="btn btn-primary">Novo</a>
+          </p>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <section class="panel">
+                <div *ngIf="!pais">Carregando ...</div>
+                <table *ngIf="pais" class="table table-striped table-advance table-hover">
+                  <tbody>
+                    <tr>
+                      <th><i class="icon_profile"></i> Id</th>
+                      <th><i class="icon_calendar"></i> Nome</th>
+                      <th><i class="icon_mail_alt"></i> Email</th>
+                      <th><i class="icon_cogs"></i> Ações</th>
+                    </tr>
+                    <tr *ngFor="let adm of pais">
+                      <td>{{adm.id}}</td>
+                      <td>{{adm.nome}}</td>
+                      <td>{{adm.email}}</td>
+                      <td>
+                        <div class="btn-group">
+                          <a class="btn btn-success" routerLink="/pais/{{adm.id}}"><i class="icon_check_alt2"></i></a>
+                          <a class="btn btn-primary" routerLink="/pais/{{adm.id}}/edit"><i class="icon_plus_alt2"></i></a>
+                          <a class="btn btn-danger" (click)="excluir(adm)"><i class="icon_close_alt2"></i></a>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+
+                <hr>
+
+              </section>
+            </div>
+          </div>
+
+        </section>
+      </div>
+    </div>
+  </section>
+  <app-footer></app-footer>
+</section>

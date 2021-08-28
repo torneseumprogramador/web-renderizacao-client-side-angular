@@ -1,17 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Paginacao } from '../../models/paginacao';
-import { AdministradorServico } from '../../servicos/AdministradorServico';
-import { Administrador } from '../../models/Administrador';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Paginacao } from 'src/app/models/paginacao';
+import { Aluno } from 'src/app/models/aluno';
+import { AlunoServico } from 'src/app/servicos/alunoServico';
 
 @Component({
-  selector: 'app-administradores',
-  templateUrl: './administradores.component.html',
-  styleUrls: ['./administradores.component.css']
+  selector: 'app-alunos',
+  templateUrl: './alunos.component.html',
+  styleUrls: ['./alunos.component.css']
 })
-export class AdministradoresComponent implements OnInit {
+export class AlunosComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
@@ -24,12 +23,12 @@ export class AdministradoresComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.route.snapshot.queryParams.pagina) this.pagina = this.route.snapshot.queryParams.pagina
-    this.carregarAdministradores(this.pagina)
+    this.carregarAlunos(this.pagina)
   }
 
-  private async carregarAdministradores(page:number = 1){
+  private async carregarAlunos(page:number = 1){
     try{
-      this.paginacao = await new AdministradorServico(this.http).todos(page)
+      this.paginacao = await new AlunoServico(this.http).todos(page)
     }
     catch(e){
       if(e.statusText === "Unauthorized"){
@@ -38,17 +37,16 @@ export class AdministradoresComponent implements OnInit {
     }
   }
 
-  public async excluir(adm:Administrador){
+  public async excluir(adm:Aluno){
     throw "Médoto ainda será implementado"
   }
 
   public proximaPagina(){
     this.pagina += 1
-    this.carregarAdministradores(this.pagina)
+    this.carregarAlunos(this.pagina)
   }
   public paginaAnterior(){
     this.pagina -= 1
-    this.carregarAdministradores(this.pagina)
+    this.carregarAlunos(this.pagina)
   }
-
 }

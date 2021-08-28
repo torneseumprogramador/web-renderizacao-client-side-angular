@@ -28,7 +28,7 @@
             <span class="profile-ava">
                 <img alt="" src="/assets/img/avatar1_small.jpg">
             </span>
-            <span class="username">@TempData["usuarioLogado"]</span>
+            <span class="username">{{usuarioLogado}}</span>
             <b class="caret"></b>
         </a>
         <ul class="dropdown-menu extended logout">
@@ -37,7 +37,7 @@
             <a href="/administradores/1/editar"><i class="icon_profile"></i> Editar perfil</a>
           </li>
           <li>
-            <a href="/login/sair"><i class="icon_key_alt"></i> Sair</a>
+            <a href="javascript:;" (click)="sair()"><i class="icon_key_alt"></i> Sair</a>
           </li>
         </ul>
       </li>

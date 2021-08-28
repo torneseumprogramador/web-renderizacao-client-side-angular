@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LocalServico } from 'src/app/servicos/localServico';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router ) { }
 
   ngOnInit(): void {
+  }
+
+  public sair(){
+    LocalServico.limpar()
+    this.router.navigateByUrl("/login")
   }
 
 }
